@@ -8,22 +8,22 @@ function vslide( options ){
 
 		if( null != this.opt.next ){
 
-			$( document ).on( 'click', this.opt.next, function(){
+			jQuery( document ).on( 'click', this.opt.next, function(){
 
 				if( _this.dec() ){
 
-					$( _this.opt.ele ).animate( { 'scrollTop': _this.opt.pos }, _this.duration );
+					jQuery( _this.opt.ele ).animate( { 'scrollTop': _this.opt.pos }, _this.duration );
 				}
 			});
 		}
 
 		if( null != this.opt.prev ){
 
-			$( document ).on( 'click', this.opt.prev, function(){
+			jQuery( document ).on( 'click', this.opt.prev, function(){
 
 				if( _this.inc() ){
 
-					$( _this.opt.ele ).animate( { 'scrollTop': _this.opt.pos }, _this.duration );
+					jQuery( _this.opt.ele ).animate( { 'scrollTop': _this.opt.pos }, _this.duration );
 				}
 			});
 		}
@@ -55,7 +55,7 @@ function vslide( options ){
 	this.init();
 };
 
-$.fn.vslide = function( options) {
+jQuery.fn.vslide = function( options) {
 
 	var defaults = {
 			pos    	 : 0,    // Current Scroll Position
@@ -69,17 +69,17 @@ $.fn.vslide = function( options) {
 			height   : 500   // Default Height for element if designer didn't gave height from css
 		};
 
-	var settings = $.extend( defaults, options );
+	var settings = jQuery.extend( defaults, options );
 
     return this.each( function(){
 
-    	settings.ele = $( this );
+    	settings.ele = jQuery( this );
 
-    	var vh = $( this ).height();
+    	var vh = jQuery( this ).height();
 
-    	$( this ).css( { height: 'auto', 'overflow' : 'hidden' } );
+    	jQuery( this ).css( { height: 'auto', 'overflow' : 'hidden' } );
 
-    	var ah = $( this ).height();
+    	var ah = jQuery( this ).height();
 
     	if( typeof options.height != 'undefined' ){
 
@@ -103,12 +103,12 @@ $.fn.vslide = function( options) {
 
     		//Hide prev and next button if slider is small for scrolling
     		if( ah <= vh ){
-    			$( settings.prev ).hide();
-    			$( settings.next ).hide();
+    			jQuery( settings.prev ).hide();
+    			jQuery( settings.next ).hide();
     		}
     	}
 
-    	$( this ).css( { height: vh } ); //Set previous height
+    	jQuery( this ).css( { height: vh } ); //Set previous height
 
     	settings.ah = ah;
     	settings.vh = vh;
