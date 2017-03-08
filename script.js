@@ -1,5 +1,3 @@
-
-
 $( document ).ready( function(){
 
 	$( '.an-1' ).vslide({

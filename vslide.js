@@ -96,8 +96,15 @@ $.fn.vslide = function( options) {
 
     		if( vh == ah ){
     			//This means designer didn't gave height from css
-    			vh = ah/2;
+    			//vh = ah/2;
+
     			console.warn( 'Set height for v slider.' );
+    		}
+
+    		//Hide prev and next button if slider is small for scrolling
+    		if( ah <= vh ){
+    			$( settings.prev ).hide();
+    			$( settings.next ).hide();
     		}
     	}
 
