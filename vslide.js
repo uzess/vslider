@@ -75,14 +75,23 @@ jQuery.fn.vslide = function( options) {
 
     	settings.ele = jQuery( this );
 
-    	var vh = jQuery( this ).height();
+    	var vh = $( this ).height(),
+    		ah = $( this )[0].scrollHeight,
+			hideNav = function(){
+				$( settings.prev ).hide();
+				$( settings.next ).hide();
+    		};
 
-    	jQuery( this ).css( { height: 'auto', 'overflow' : 'hidden' } );
+    	if( typeof options.height == 'undefined' ){
 
-    	var ah = jQuery( this ).height();
-
-    	if( typeof options.height != 'undefined' ){
-
+    		if( vh == ah ){
+    			//This means designer didn't gave height from css
+    			//vh = ah/2;
+    			console.warn( 'Set height for v slider.' );
+    		}
+    		
+    	}else{
+    		
     		var h = parseInt( settings.height );
 
     		if( isNaN( h ) ){
@@ -91,24 +100,12 @@ jQuery.fn.vslide = function( options) {
 
     			vh = h;
     		}
-    		
-    	}else{
-
-    		if( vh == ah ){
-    			//This means designer didn't gave height from css
-    			//vh = ah/2;
-
-    			console.warn( 'Set height for v slider.' );
-    		}
-
-    		//Hide prev and next button if slider is small for scrolling
-    		if( ah <= vh ){
-    			jQuery( settings.prev ).hide();
-    			jQuery( settings.next ).hide();
-    		}
     	}
 
     	jQuery( this ).css( { height: vh } ); //Set previous height
+
+    	//Hide prev and next button if slider is small for scrolling
+    	if( ah <= vh ){ hideNav(); }
 
     	settings.ah = ah;
     	settings.vh = vh;
